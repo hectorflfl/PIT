@@ -26,6 +26,7 @@ void PIT0_IRQHandler(){
 
 void PIT_clockGating(){
 
+	SIM->SCGC6 |= PIT_CLOCK_GATING;
 }
 
 
