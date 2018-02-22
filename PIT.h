@@ -36,7 +36,7 @@ void PIT_clockGating(void);
 uint8 PIT_interruptFlagStatus(PIT_Timer_t pitTimer);
 
 
-uint8 PIT_getIntrStatus(PIT_Timer_t pitTimer);
+uint32 PIT_getIntrStatus(PIT_Timer_t pitTimer);
 
 void PIT_clear(PIT_Timer_t pitTimer);
 

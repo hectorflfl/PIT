@@ -43,7 +43,7 @@
 
 int main(void) {
 
-	uint8 pitIntrStatus = FALSE;
+	//uint32 pitIntrStatus = FALSE;
 	GPIO_pinControlRegisterType pinControlRegisterPORTD = GPIO_MUX1;
 
 	GPIO_clockGating(GPIO_D);
@@ -56,18 +56,14 @@ int main(void) {
 
     while(1) {
     	GPIO_tooglePIN(GPIO_D,BIT0);
-
 		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY);
-		while(FALSE == pitIntrStatus){
-			pitIntrStatus = PIT_getIntrStatus(PIT_0);
-		}
+		while(FALSE == PIT_getIntrStatus(PIT_0));
 		GPIO_tooglePIN(GPIO_D,BIT0);
 		PIT_clear(PIT_0);
 		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY);
 
-		while(FALSE == pitIntrStatus){
-			pitIntrStatus = PIT_getIntrStatus(PIT_0);
-		}
+		while(FALSE == PIT_getIntrStatus(PIT_0));
+		PIT_clear(PIT_0);
     }
     return 0 ;
 }
