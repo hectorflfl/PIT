@@ -38,6 +38,8 @@
 #include "GPIO.h"
 #define SYSTEM_CLOCK 21000000
 #define DELAY 0.25F
+#define DELAY1 0.01785F
+#define DELAY2 0.00050F
 
 
 
@@ -56,11 +58,11 @@ int main(void) {
 
     while(1) {
     	GPIO_tooglePIN(GPIO_D,BIT0);
-		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY);
+		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY2);
 		while(FALSE == PIT_getIntrStatus(PIT_0));
 		GPIO_tooglePIN(GPIO_D,BIT0);
 		PIT_clear(PIT_0);
-		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY);
+		PIT_delay(PIT_0,SYSTEM_CLOCK,DELAY2);
 
 		while(FALSE == PIT_getIntrStatus(PIT_0));
 		PIT_clear(PIT_0);
