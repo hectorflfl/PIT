@@ -54,5 +54,5 @@ uint8 PIT_getIntrStatus(PIT_Timer_t pitTimer){
 
 
 void PIT_clear(PIT_Timer_t pitTimer){
-
+	PIT->CHANNEL[pitTimer].TCTRL|=DISABLED;
 }
