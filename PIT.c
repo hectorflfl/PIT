@@ -36,6 +36,14 @@ uint8 PIT_interruptFlagStatus(PIT_Timer_t pitTimer){
 
 }
 void PIT_delay(PIT_Timer_t pitTimer,float systemClock ,float perior){
+	PIT->MCR = ENABLE;
+	float tiempo=(( systemClock*perior)/2.0F);
+
+	PIT->CHANNEL[pitTimer].LDVAL=tiempo;
+	PIT->CHANNEL[pitTimer].TFLG |= PIT_TFLG_TIF_MASK;
+	PIT->CHANNEL[pitTimer].TCTRL|= (PIT_TCTRL_TIE_MASK);//enables PIT timer interrupt
+	PIT->CHANNEL[pitTimer].TCTRL |= (PIT_TCTRL_TEN_MASK);//enables timer0
+
 
 }
 
